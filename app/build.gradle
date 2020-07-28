@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "me.sparker0i.ottcontent"
-        minSdkVersion 22
+        minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -18,9 +18,22 @@ android {
     }
 
     buildTypes {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        def ottServerUrl = properties.getProperty("ott_server_url", "")
+
+        debug {
+            buildConfigField 'String', "OTT_SERVER_URL", "$ottServerUrl"
+            resValue 'string', "ott_server_url", "$ottServerUrl"
+        }
+
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            buildConfigField 'String', "OTT_SERVER_URL", "$ottServerUrl"
+            resValue 'string', "ott_server_url", "$ottServerUrl"
+
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
@@ -31,6 +44,7 @@ dependencies {
     implementation "androidx.core:core-ktx:1.3.1"
     implementation "androidx.appcompat:appcompat:1.1.0"
     implementation "androidx.constraintlayout:constraintlayout:1.1.3"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     kapt("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
