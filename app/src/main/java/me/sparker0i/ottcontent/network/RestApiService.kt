@@ -4,6 +4,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import kotlinx.coroutines.Deferred
 import me.sparker0i.ottcontent.BuildConfig
 import me.sparker0i.ottcontent.model.Country
+import me.sparker0i.ottcontent.network.interceptor.ConnectivityInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -14,6 +15,25 @@ interface RestApiService {
     @POST("/country-list") fun getCountries(): Deferred<MutableList<Country>>
 
     companion object {
+        operator fun invoke(
+            connectivityInterceptor: ConnectivityInterceptor
+        ): RestApiService {
+            val okHttpClient = OkHttpClient.Builder()
+                .addInterceptor(connectivityInterceptor)
+                .connectTimeout(1, TimeUnit.MINUTES)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                .build()
+
+            return Retrofit.Builder()
+                .baseUrl(BuildConfig.OTT_SERVER_URL)
+                .addConverterFactory(MoshiConverterFactory.create())
+                .client(okHttpClient)
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
+                .build()
+                .create(RestApiService::class.java)
+        }
+
         fun createService(): RestApiService {
             val okHttpClient = OkHttpClient.Builder()
                 .connectTimeout(1, TimeUnit.MINUTES)
