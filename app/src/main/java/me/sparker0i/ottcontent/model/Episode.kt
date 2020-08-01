@@ -1,13 +1,16 @@
 package me.sparker0i.ottcontent.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import me.sparker0i.ottcontent.utils.Constants
 import java.util.*
 
+@Entity(tableName = "episode")
 @JsonClass(generateAdapter = true)
 data class Episode(
-    @Json(name = Constants.ID) var id: Int,
+    @PrimaryKey @Json(name = Constants.ID) var id: Int,
     @Json(name = Constants.SHOW_ID) var showId: Int,
     @Json(name = Constants.SEASON_NUM) var seasonNum: Int,
     @Json(name = Constants.EPISODE_NUM) var episodeNum: Int,
