@@ -10,5 +10,6 @@ import me.sparker0i.ottcontent.utils.Constants
 @JsonClass(generateAdapter = true)
 data class Country(
     @PrimaryKey @Json(name = Constants.CODE) var code: String,
-    @Json(name = Constants.NAME) var name: String
+    @Json(name = Constants.NAME) var name: String,
+    @Json(name = Constants.FLAG) var flag: String
 )
