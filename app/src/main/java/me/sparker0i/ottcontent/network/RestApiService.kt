@@ -8,11 +8,12 @@ import me.sparker0i.ottcontent.network.interceptor.ConnectivityInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.GET
 import retrofit2.http.POST
 import java.util.concurrent.TimeUnit
 
 interface RestApiService {
-    @POST("/country-list") fun getCountries(): Deferred<MutableList<Country>>
+    @GET("/country-list") fun getCountries(): Deferred<MutableList<Country>>
 
     companion object {
         operator fun invoke(
