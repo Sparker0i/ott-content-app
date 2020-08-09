@@ -7,6 +7,7 @@ object Constants {
 
     const val CODE = "CODE"
     const val NAME = "NAME"
+    const val FLAG = "FLAG"
 
     const val ID = "ID"
     const val DESCRIPTION = "DESCRIPTION"

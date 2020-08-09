@@ -5,6 +5,8 @@ buildscript {
     ext.glide_version = "4.11.0"
     ext.kodein_version = "6.5.1"
     ext.room_version = "2.2.5"
+    ext.glide_version = "4.11.0"
+    ext.recyclerview_version = "1.1.0"
 
     repositories {
         google()
