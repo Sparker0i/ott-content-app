@@ -3,7 +3,7 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="backgroundColor">#FFFFFF</color>
-    <color name="actionBarColor">#FFFFFF</color>
-    <color name="cardBackgroundColor">#FFFFFF</color>
+    <color name="backgroundColor">#121212</color>
+    <color name="actionBarColor">#D8333333</color>
+    <color name="cardBackgroundColor">#E2121212</color>
 </resources>

@@ -6,6 +6,11 @@
     android:id="@+id/item_country_card"
     app:cardCornerRadius="@dimen/country_card_corner_radius"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:checkable="true"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="@color/cardBackgroundColor"
+    app:cardElevation="4dp"
     xmlns:tools="http://schemas.android.com/tools">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
