@@ -1,4 +1,4 @@
-package me.sparker0i.ottcontent.view.countrypicker.adapter
+package me.sparker0i.ottcontent.view.composer.countrypicker.adapter
 
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -15,10 +15,12 @@ import com.bumptech.glide.Glide
 import com.google.android.material.card.MaterialCardView
 import me.sparker0i.ottcontent.R
 import me.sparker0i.ottcontent.model.Country
+import me.sparker0i.ottcontent.viewmodel.ContentViewModel
 
-internal class CountryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+internal class CountryAdapter(vm: ContentViewModel) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     lateinit var items: List<Country>
     lateinit var selectionTracker: SelectionTracker<Long?>
+    private val viewModel = vm
 
     override fun getItemViewType(position: Int): Int {
         return 0
@@ -52,6 +54,9 @@ internal class CountryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() 
                 .load(country.flag)
                 .centerInside()
                 .into(countryImage)
+            materialCardView.setOnClickListener {
+                viewModel.countryValue.postValue(country.code)
+            }
             bindSelectedState()
         }
 

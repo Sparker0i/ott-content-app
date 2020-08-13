@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_fragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_fragment"
+    app:startDestination="@id/countryPickerFragment">
 
+    <fragment
+        android:id="@+id/countryPickerFragment"
+        android:name="me.sparker0i.ottcontent.view.composer.countrypicker.CountryPickerFragment"
+        android:label="CountryPickerFragment"
+        tools:layout="@layout/fragment_country_picker">
+        <action android:id="@+id/countryPickerFragmentToPlatformPickerFragment"
+            app:destination="@+id/platformPickerFragment">
+            <argument
+                android:name="countryValue"
+                app:argType="string" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/platformPickerFragment"
+        android:name="me.sparker0i.ottcontent.view.composer.platformpicker.PlatformPickerFragment"
+        android:label="fragment_platform_picker"
+        tools:layout="@layout/fragment_platform_picker" >
+        <argument
+            android:name="countryValue"
+            app:argType="string" />
+    </fragment>
 </navigation>

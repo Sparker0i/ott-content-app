@@ -1,4 +1,4 @@
-package me.sparker0i.ottcontent.view.countrypicker
+package me.sparker0i.ottcontent.view.composer.countrypicker
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,18 +7,19 @@ import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.selection.SelectionPredicates
 import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.selection.StorageStrategy
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_country_picker.*
 import kotlinx.coroutines.launch
 import me.sparker0i.ottcontent.R
 import me.sparker0i.ottcontent.model.Country
 import me.sparker0i.ottcontent.view.base.ScopedFragment
-import me.sparker0i.ottcontent.view.countrypicker.adapter.CountryAdapter
+import me.sparker0i.ottcontent.view.composer.countrypicker.adapter.CountryAdapter
 import me.sparker0i.ottcontent.viewmodel.ContentViewModel
 import me.sparker0i.ottcontent.viewmodel.ContentViewModelFactory
 import org.kodein.di.KodeinAware
@@ -39,7 +40,7 @@ class CountryPickerFragment : ScopedFragment(), KodeinAware {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_country_picker, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -50,11 +51,16 @@ class CountryPickerFragment : ScopedFragment(), KodeinAware {
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView, countries: List<Country>) {
-        val adapter = CountryAdapter()
+        val adapter = CountryAdapter(viewModel)
         adapter.items = countries
         recyclerView.adapter = adapter
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.itemAnimator = DefaultItemAnimator()
+
+        viewModel.countryValue.observeForever{value ->
+            val action = CountryPickerFragmentDirections.countryPickerFragmentToPlatformPickerFragment(value)
+            requireView().findNavController().navigate(action)
+        }
 
         selectionTracker = SelectionTracker.Builder(
             "country_selection",
