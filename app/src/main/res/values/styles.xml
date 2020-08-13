@@ -5,14 +5,15 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="actionBarStyle">@style/ActionBarTheme</item>
-        <item name="toolbarStyle">@style/ActionBarTheme</item>
         <item name="android:statusBarColor">@color/colorAccent</item>
         <item name="android:navigationBarColor">@color/backgroundColor</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="ActionBarTheme" parent="Widget.AppCompat.ActionBar">
-        <item name="android:background">@color/colorAccent</item>
+    <style name="ToolbarTheme" parent="ThemeOverlay.MaterialComponents.ActionBar">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">#EEEEEE</item>
     </style>
-
 </resources>

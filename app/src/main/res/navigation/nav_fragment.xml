@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/countryPickerFragment"
         android:name="me.sparker0i.ottcontent.view.composer.countrypicker.CountryPickerFragment"
-        android:label="CountryPickerFragment"
+        android:label="Pick a Country"
         tools:layout="@layout/fragment_country_picker">
         <action android:id="@+id/countryPickerFragmentToPlatformPickerFragment"
             app:destination="@+id/platformPickerFragment">
@@ -20,8 +20,8 @@
     <fragment
         android:id="@+id/platformPickerFragment"
         android:name="me.sparker0i.ottcontent.view.composer.platformpicker.PlatformPickerFragment"
-        android:label="fragment_platform_picker"
-        tools:layout="@layout/fragment_platform_picker" >
+        android:label="Pick a Platform"
+        tools:layout="@layout/fragment_platform_picker">
         <argument
             android:name="countryValue"
             app:argType="string" />

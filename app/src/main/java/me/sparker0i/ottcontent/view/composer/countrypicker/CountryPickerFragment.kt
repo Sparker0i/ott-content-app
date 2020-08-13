@@ -86,8 +86,8 @@ class CountryPickerFragment : ScopedFragment(), KodeinAware {
     fun getCountries() = launch {
         val countries = viewModel.countries.await()
 
-        countries.observe(viewLifecycleOwner, Observer {list ->
+        countries.observeForever{list ->
             mutableCountries.postValue(list)
-        })
+        }
     }
 }
