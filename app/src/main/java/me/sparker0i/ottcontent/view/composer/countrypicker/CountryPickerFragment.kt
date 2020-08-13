@@ -47,6 +47,14 @@ class CountryPickerFragment : ScopedFragment(), KodeinAware {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory).get(ContentViewModel::class.java)
 
+        viewModel.countryValue.observe(viewLifecycleOwner, Observer { value ->
+            if (value != null) {
+                val action = CountryPickerFragmentDirections.countryPickerFragmentToPlatformPickerFragment(value)
+                viewModel.countryValue.postValue(null)
+                requireView().findNavController().navigate(action)
+            }
+        })
+
         bindUi()
     }
 
@@ -56,11 +64,6 @@ class CountryPickerFragment : ScopedFragment(), KodeinAware {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.itemAnimator = DefaultItemAnimator()
-
-        viewModel.countryValue.observeForever{value ->
-            val action = CountryPickerFragmentDirections.countryPickerFragmentToPlatformPickerFragment(value)
-            requireView().findNavController().navigate(action)
-        }
 
         selectionTracker = SelectionTracker.Builder(
             "country_selection",

@@ -93,8 +93,6 @@ internal class CountryAdapter(vm: ContentViewModel) : RecyclerView.Adapter<Recyc
         }
     }
 
-    internal class Item(val title: String, val subtitle: String)
-
     internal class Details : ItemDetailsLookup.ItemDetails<Long?>() {
         var position: Long = 0
         override fun getPosition(): Int {

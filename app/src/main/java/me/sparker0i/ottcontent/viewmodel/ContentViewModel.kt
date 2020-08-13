@@ -12,5 +12,5 @@ class ContentViewModel(
         contentRepository.getCountries()
     }
 
-    val countryValue = MutableLiveData<String>()
+    val countryValue = MutableLiveData<String?>()
 }
