@@ -25,5 +25,26 @@
         <argument
             android:name="countryValue"
             app:argType="string" />
+        <action android:id="@+id/platformPickerFragmentToPlatformContentFragment"
+            app:destination="@+id/platformContentFragment">
+            <argument
+                android:name="countryValue"
+                app:argType="string" />
+            <argument
+                android:name="platformValue"
+                app:argType="integer" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/platformContentFragment"
+        android:name="me.sparker0i.ottcontent.view.composer.platformcontent.PlatformContentFragment"
+        android:label="Pick a Show"
+        tools:layout="@layout/fragment_platform_content">
+        <argument
+            android:name="countryValue"
+            app:argType="string" />
+        <argument
+            android:name="platformValue"
+            app:argType="integer" />
     </fragment>
 </navigation>

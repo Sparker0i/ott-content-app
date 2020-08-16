@@ -1,7 +1,5 @@
 package me.sparker0i.ottcontent.view.composer.platformpicker
 
-import android.R.attr.spacing
-import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,11 +8,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import kotlinx.android.synthetic.main.fragment_platform_picker.*
 import kotlinx.coroutines.launch
 import me.sparker0i.ottcontent.R
@@ -59,7 +54,9 @@ class PlatformPickerFragment : ScopedFragment(), KodeinAware {
 
         viewModel.platformCountryValue.observe(viewLifecycleOwner, Observer { value ->
             if (value != null) {
-
+                val action = PlatformPickerFragmentDirections.platformPickerFragmentToPlatformContentFragment(value.first, value.second)
+                viewModel.platformCountryValue.postValue(null)
+                requireView().findNavController().navigate(action)
             }
         })
 
