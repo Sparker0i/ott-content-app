@@ -4,6 +4,9 @@ object Constants {
     /* Variables that hold Json Keys */
     const val PLATFORM_ID = "PLATFORM_ID"
     const val LOCALIZED_NAME = "LOCALIZED_NAME"
+    const val COUNTRY_CODE = "COUNTRY_CODE"
+    const val AVAILABILITY = "AVAILABILITY"
+    const val ICON = "ICON"
 
     const val CODE = "CODE"
     const val NAME = "NAME"
