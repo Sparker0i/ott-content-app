@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="country_card_corner_radius">16dp</dimen>
-    <dimen name="country_card_elevation">1dp</dimen>
+    <dimen name="card_corner_radius">16dp</dimen>
+    <dimen name="card_elevation">1dp</dimen>
+    <dimen name="card_spacing">8dp</dimen>
+    <dimen name="card_text_size">16sp</dimen>
+    <dimen name="card_text_padding">8dp</dimen>
+
+    <dimen name="iv_country_size">180dp</dimen>
+    <dimen name="iv_platform_size">180dp</dimen>
 </resources>
