@@ -22,7 +22,7 @@ internal class CountryAdapter(vm: ContentViewModel) : RecyclerView.Adapter<Recyc
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view: View = inflater.inflate(R.layout.item_country_new, parent, false)
+        val view: View = inflater.inflate(R.layout.item_country, parent, false)
         return ItemViewHolder(view)
     }
 
