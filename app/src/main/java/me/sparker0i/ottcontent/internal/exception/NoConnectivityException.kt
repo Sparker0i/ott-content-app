@@ -1,4 +1,4 @@
-package me.sparker0i.ottcontent.internal
+package me.sparker0i.ottcontent.internal.exception
 
 import java.io.IOException
 

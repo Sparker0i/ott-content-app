@@ -3,7 +3,7 @@ package me.sparker0i.ottcontent.network.interceptor
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import me.sparker0i.ottcontent.internal.NoConnectivityException
+import me.sparker0i.ottcontent.internal.exception.NoConnectivityException
 import okhttp3.Interceptor
 import okhttp3.Response
 

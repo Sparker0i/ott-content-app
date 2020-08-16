@@ -2,7 +2,7 @@ package me.sparker0i.ottcontent.network.source
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import me.sparker0i.ottcontent.internal.NoConnectivityException
+import me.sparker0i.ottcontent.internal.exception.NoConnectivityException
 import me.sparker0i.ottcontent.model.Country
 import me.sparker0i.ottcontent.model.Platform
 import me.sparker0i.ottcontent.network.RestApiService

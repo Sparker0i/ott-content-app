@@ -36,21 +36,5 @@ interface RestApiService {
                 .build()
                 .create(RestApiService::class.java)
         }
-
-        fun createService(): RestApiService {
-            val okHttpClient = OkHttpClient.Builder()
-                .connectTimeout(1, TimeUnit.MINUTES)
-                .readTimeout(30, TimeUnit.SECONDS)
-                .writeTimeout(30, TimeUnit.SECONDS)
-                .build()
-
-            return Retrofit.Builder()
-                .baseUrl(BuildConfig.OTT_SERVER_URL)
-                .addConverterFactory(MoshiConverterFactory.create())
-                .client(okHttpClient)
-                .addCallAdapterFactory(CoroutineCallAdapterFactory())
-                .build()
-                .create(RestApiService::class.java)
-        }
     }
 }
