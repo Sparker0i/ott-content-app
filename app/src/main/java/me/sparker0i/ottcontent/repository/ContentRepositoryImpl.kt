@@ -40,17 +40,19 @@ class ContentRepositoryImpl(
     }
 
     private fun persistFetchedCountries(fetchedCountries: List<Country>) {
-        GlobalScope.launch(Dispatchers.IO) {
-            contentDao.deleteNonExistingCountries(fetchedCountries.map { country -> country.code })
-            contentDao.insertCountries(fetchedCountries)
-        }
+        if (fetchedCountries.isNotEmpty())
+            GlobalScope.launch(Dispatchers.IO) {
+                contentDao.deleteNonExistingCountries(fetchedCountries.map { country -> country.code })
+                contentDao.insertCountries(fetchedCountries)
+            }
     }
 
     private fun persistFetchedPlatforms(fetchedPlatforms: List<Platform>) {
-        GlobalScope.launch(Dispatchers.IO) {
-            contentDao.deleteNonExistingPlatformsForCountry(fetchedPlatforms[0].countryCode, fetchedPlatforms.map { platform -> platform.platformId })
-            contentDao.insertPlatforms(fetchedPlatforms)
-        }
+        if (fetchedPlatforms.isNotEmpty())
+            GlobalScope.launch(Dispatchers.IO) {
+                contentDao.deleteNonExistingPlatformsForCountry(fetchedPlatforms[0].countryCode, fetchedPlatforms.map { platform -> platform.platformId })
+                contentDao.insertPlatforms(fetchedPlatforms)
+            }
     }
 
     private suspend fun initCountries() {
