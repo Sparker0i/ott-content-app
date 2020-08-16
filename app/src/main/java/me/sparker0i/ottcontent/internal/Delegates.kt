@@ -9,3 +9,9 @@ fun <T> lazyDeferred(block: suspend CoroutineScope.() -> T): Lazy<Deferred<T>> {
         }
     }
 }
+
+fun <T> deferred(block: suspend CoroutineScope.() -> T): Deferred<T> {
+    return GlobalScope.async(start = CoroutineStart.LAZY) {
+        block.invoke(this)
+    }
+}
