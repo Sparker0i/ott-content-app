@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,7 +30,6 @@ class CountryPickerFragment : ScopedFragment(), KodeinAware {
 
     private val viewModelFactory: ContentViewModelFactory by instance()
     private lateinit var viewModel: ContentViewModel
-    private lateinit var selectionTracker: SelectionTracker<Long?>
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -15,9 +15,6 @@ class ContentRepositoryImpl(
     private val contentDao: ContentDao,
     private val networkDataSource: NetworkDataSource
 ): ContentRepository {
-    private lateinit var countryFetchTime: ZonedDateTime
-    private lateinit var platformFetchTime: ZonedDateTime
-
     init {
         networkDataSource.getCountries.observeForever{newCountries ->
             persistFetchedCountries(newCountries)
@@ -57,17 +54,11 @@ class ContentRepositoryImpl(
     }
 
     private suspend fun initCountries() {
-        if (!::countryFetchTime.isInitialized)
-            countryFetchTime = ZonedDateTime.now()
-        if (isFetchCurrentNeeded(countryFetchTime))
-            fetchCountries()
+        fetchCountries()
     }
 
     private suspend fun initPlatfoms(country: String) {
-        if (!::platformFetchTime.isInitialized)
-            platformFetchTime = ZonedDateTime.now()
-        if (isFetchCurrentNeeded(platformFetchTime))
-            fetchPlatforms(country)
+        fetchPlatforms(country)
     }
 
     private suspend fun fetchPlatforms(country: String) {

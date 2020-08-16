@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import me.sparker0i.ottcontent.internal.exception.NoConnectivityException
 import me.sparker0i.ottcontent.model.Country
 import me.sparker0i.ottcontent.model.Platform
+import me.sparker0i.ottcontent.model.body.PlatformRequestBody
 import me.sparker0i.ottcontent.network.RestApiService
 
 class NetworkDataSourceImpl(
@@ -29,7 +30,7 @@ class NetworkDataSourceImpl(
     override suspend fun fetchPlatforms(country: String) {
         try {
             val platforms = restApiService
-                .getPlatforms(country)
+                .getPlatforms(PlatformRequestBody(country))
                 .await()
 
             getPlatforms.postValue(platforms)

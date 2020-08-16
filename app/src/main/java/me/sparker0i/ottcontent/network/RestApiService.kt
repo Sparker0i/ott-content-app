@@ -5,17 +5,19 @@ import kotlinx.coroutines.Deferred
 import me.sparker0i.ottcontent.BuildConfig
 import me.sparker0i.ottcontent.model.Country
 import me.sparker0i.ottcontent.model.Platform
+import me.sparker0i.ottcontent.model.body.PlatformRequestBody
 import me.sparker0i.ottcontent.network.interceptor.ConnectivityInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import java.util.concurrent.TimeUnit
 
 interface RestApiService {
     @GET("/country-list") fun getCountries(): Deferred<MutableList<Country>>
-    @POST("/platform-list") fun getPlatforms(code: String): Deferred<MutableList<Platform>>
+    @POST("/platform-list") fun getPlatforms(@Body body: PlatformRequestBody): Deferred<MutableList<Platform>>
 
     companion object {
         operator fun invoke(
