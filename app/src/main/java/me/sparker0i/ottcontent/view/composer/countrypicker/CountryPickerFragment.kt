@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_country_picker.*
 import kotlinx.coroutines.launch
 import me.sparker0i.ottcontent.R
+import me.sparker0i.ottcontent.internal.setupGridRecyclerView
 import me.sparker0i.ottcontent.model.Country
 import me.sparker0i.ottcontent.view.base.ScopedFragment
 import me.sparker0i.ottcontent.view.composer.countrypicker.adapter.CountryAdapter
@@ -54,17 +55,9 @@ class CountryPickerFragment : ScopedFragment(), KodeinAware {
         bindUi()
     }
 
-    private fun setupRecyclerView(recyclerView: RecyclerView, countries: List<Country>) {
-        val adapter = CountryAdapter(viewModel)
-        adapter.items = countries
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = GridLayoutManager(context, 2)
-        recyclerView.itemAnimator = DefaultItemAnimator()
-    }
-
     private fun bindUi() {
         mutableCountries.observe(viewLifecycleOwner, Observer {list ->
-            setupRecyclerView(country_recycler_view, list)
+            setupGridRecyclerView(CountryAdapter(viewModel), country_recycler_view, list)
         })
 
         getCountries()
