@@ -10,44 +10,41 @@ import com.bumptech.glide.Glide
 import com.google.android.material.card.MaterialCardView
 import me.sparker0i.ottcontent.R
 import me.sparker0i.ottcontent.model.Country
+import me.sparker0i.ottcontent.view.base.CardAdapter
 import me.sparker0i.ottcontent.viewmodel.ContentViewModel
 
-internal class CountryAdapter(vm: ContentViewModel) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    lateinit var items: List<Country>
+internal class CountryAdapter(vm: ContentViewModel) : CardAdapter<Country>(R.layout.item_country) {
+    override lateinit var items: List<Country>
     private val viewModel = vm
-
-    override fun getItemViewType(position: Int): Int {
-        return 0
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view: View = inflater.inflate(R.layout.item_country, parent, false)
-        return ItemViewHolder(view)
+        val view: View = inflater.inflate(baseLayout, parent, false)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         val item = items[position]
-        (viewHolder as ItemViewHolder).bind(item)
+        (viewHolder as ViewHolder).bind(item)
     }
 
     override fun getItemCount(): Int {
         return items.size
     }
 
-    internal inner class ItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    internal inner class ViewHolder(itemView: View): ItemViewHolder<Country>(itemView) {
         private val materialCardView: MaterialCardView = itemView.findViewById(R.id.item_country_card)
         private val countryText: TextView = itemView.findViewById(R.id.tv_country_name)
         private val countryImage: ImageView = itemView.findViewById(R.id.iv_country_flag)
 
-        fun bind(country: Country) {
-            countryText.text = country.name
+        override fun bind(item: Country) {
+            countryText.text = item.name
             Glide.with(itemView)
-                .load(country.flag)
+                .load(item.flag)
                 .centerInside()
                 .into(countryImage)
             materialCardView.setOnClickListener {
-                viewModel.countryValue.postValue(country.code)
+                viewModel.countryValue.postValue(item.code)
             }
         }
     }
