@@ -8,9 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.recyclerview.selection.SelectionPredicates
 import androidx.recyclerview.selection.SelectionTracker
-import androidx.recyclerview.selection.StorageStrategy
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -64,18 +62,6 @@ class CountryPickerFragment : ScopedFragment(), KodeinAware {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.itemAnimator = DefaultItemAnimator()
-
-        selectionTracker = SelectionTracker.Builder(
-            "country_selection",
-            recyclerView,
-            CountryAdapter.KeyProvider(adapter),
-            CountryAdapter.DetailsLookup(recyclerView),
-            StorageStrategy.createLongStorage()
-        )
-            .withSelectionPredicate(SelectionPredicates.createSelectSingleAnything())
-            .build()
-
-        adapter.selectionTracker = selectionTracker
     }
 
     private fun bindUi() {
