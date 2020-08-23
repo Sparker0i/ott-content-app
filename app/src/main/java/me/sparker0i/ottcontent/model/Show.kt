@@ -12,5 +12,6 @@ data class Show(
     @PrimaryKey @Json(name = Constants.ID) var id: Int,
     @Json(name = Constants.NAME) var name: String,
     @Json(name = Constants.DESCRIPTION) var description: String,
-    @Json(name = Constants.TRAILER) var trailer: String
+    @Json(name = Constants.TRAILER) var trailer: String,
+    @Json(name = Constants.POSTER) var poster: String
 )
