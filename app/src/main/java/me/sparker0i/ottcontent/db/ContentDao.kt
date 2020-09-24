@@ -7,12 +7,16 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import me.sparker0i.ottcontent.model.Country
 import me.sparker0i.ottcontent.model.Platform
+import me.sparker0i.ottcontent.model.Show
 
 @Dao
 interface ContentDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE) fun insertCountry(country: Country)
     @Insert(onConflict = OnConflictStrategy.IGNORE) fun insertCountries(countries: List<Country>)
     @Insert(onConflict = OnConflictStrategy.REPLACE) fun insertPlatforms(platforms: List<Platform>)
+    @Insert(onConflict = OnConflictStrategy.REPLACE) fun insertShows(shows: List<Show>)
+
+    @Query("DELETE FROM SHOW WHERE ") fun deleteNonExistingShowsForPlatformAndCountry(countryCode: String, platformId: Int)
 
     @Query("DELETE FROM COUNTRY WHERE CODE NOT IN (:countries)") fun deleteNonExistingCountries(countries: List<String>)
     @Query("SELECT * FROM COUNTRY") fun getCountries(): LiveData<List<Country>>
